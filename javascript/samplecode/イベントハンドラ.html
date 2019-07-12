@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>時刻をコンソールに表示</title>
+        <script>
+            function displayTime(){
+                var d = new Date();
+                console.log("現在は" + d.toLocaleString() + "です");
+            }
+
+            window.onload = function(){
+                var button = document.getElementById("button");
+                button.onclick = displayTime;
+            };
+        </script>
+    </head>
+    <body>
+        <input type = "button" value="click" id = "button">
+    </body>
+</html>

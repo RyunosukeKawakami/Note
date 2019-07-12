@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang = "ja">
+    <head>
+        <meta charset="UTF-8">
+        <title>ニュートン法</title>
+    </head>
+    <body>
+        <script>
+            const epsilon = 1.0e-10;
+            let d,xnew,xold;
+            let a = parseFloat(prompt("正の値を入力してください"));
+            xold = (a>1) ? a : 1.0;
+            do{
+                xnew = xold - (xold * xold - a)/(2.0*xold);
+                d = (xold - xnew)/xold;
+                xold = xnew;
+            }while(d > epsilon);
+            document.write("sqrt(" + a + ")  = " + xnew);
+        </script>
+    </body>
+</html>

@@ -9,7 +9,7 @@ constメンバ関数とは、 <font color = "Aquamarine"> メンバ関数内で�
 ```cpp
 class A{
 public:
-    void Hoge();
+    void Hoge() const;
 };
 
 void A::Hoge() const    //この関数内ではメンバ変数を書き換えられない
