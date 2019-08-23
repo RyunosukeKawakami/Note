@@ -9,10 +9,10 @@ window.onload = function(){
     document.getElementById("button").onclick = draw;
 
     //中心座標をマウスでクリックして設定
-    DocumentTimeline.getElementById("mycanvas").onclick = function(event){
+    document.getElementById("mycanvas").onclick = function(event){
         let ix = event.offsetX;
         let iy = event.offsetY;
-        let mag = parseFloat(document.getElementById("magnificantion").value);
+        let mag = parseFloat(document.getElementById("magnification").value);
 
         xc += (2 * ix / width - 1) / mag;
         yc += (2 * iy - height / mag / width);
@@ -21,10 +21,10 @@ window.onload = function(){
 
     //設定を読み込み描画する関数
     function draw(){
-        let mag = document.getElementById("magnifivation").value;
+        let mag = document.getElementById("magnification").value;
         let maxit = document.getElementById("maxit").value;
         displayCenter(xc,yc);
-        mandelbrot(ctx,xc,yx,mag,maxit);
+        mandelbrot(ctx,xc,yc,mag,maxit);
     }
 };
 
@@ -36,10 +36,9 @@ function displayCenter(xc,yc){
 function mandelbrot(c,xc,yc,mag,maxit){
     let w = c.canvas.width;
     let h = c.canvas.height;
-    var xmin = xc - 1 / mag;
-    let xmax = xc + 1 / mag;
     let xmin = xc - 1 / mag;
-    var ymin = yc - (xmax - xmin) * h /w /2;
+    let xmax = xc + 1 / mag;
+    let ymin = yc - (xmax - xmin) * h /w /2;
     let ymax = yc + (xmax - xmin) * h /w /2;
     let dx = (xmax - xmin) / w;
     let dy = (ymax - ymin) / h;
@@ -57,8 +56,9 @@ function mandelbrot(c,xc,yc,mag,maxit){
             let y = ymin + j * dy;
             let a = x , b = y;
             let a2 = a*a, b2 = b*b;
+            let count = maxit;
 
-            for(let count = maxit; a2+b2 <= 4 && count; count--){
+            for(; a2+b2 <= 4 && count; count--){
                 b = 2 * a * b + y;
                 a = a2 - b2 + x;
                 a2 = a*a;
